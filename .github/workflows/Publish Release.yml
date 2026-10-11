@@ -7,6 +7,10 @@ on:
     paths-ignore:
       - .github/workflows/*
 
+# The release step creates a tag and a release.
+permissions:
+  contents: write
+
 jobs:
   publish:
     runs-on: ubuntu-latest
