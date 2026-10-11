@@ -1,0 +1,44 @@
+name: Publish Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - .github/workflows/*
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      python_ver: "3.11"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.python_ver }}
+
+      - name: Test
+        run: python tests/test_plugin.py
+
+      - name: Get version
+        id: version
+        uses: notiz-dev/github-action-json-property@release
+        with:
+          path: plugin.json
+          prop_path: Version
+
+      # The plugin uses only the Python standard library, so there is no lib folder to build.
+      - name: Package
+        run: zip -r Flow.Launcher.Plugin.Asyntai.zip . -x '*.git*' 'tests/*' '*__pycache__*'
+
+      - name: Publish
+        if: success()
+        uses: softprops/action-gh-release@v2
+        with:
+          files: Flow.Launcher.Plugin.Asyntai.zip
+          tag_name: "v${{ steps.version.outputs.prop }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

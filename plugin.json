@@ -1,0 +1,13 @@
+{
+  "$schema": "https://www.flowlauncher.com/schemas/plugin.schema.json",
+  "ID": "C06CEA5711924894B228BB12694A6D44",
+  "ActionKeyword": "asy",
+  "Name": "Asyntai AI Chatbot",
+  "Description": "Read your website chats, leads and tickets, and ask your own AI chatbot a question, from the Flow Launcher search box.",
+  "Author": "Asyntai",
+  "Version": "1.0.0",
+  "Language": "python",
+  "Website": "https://asyntai.com/documentation/integrations/flow-launcher/",
+  "IcoPath": "Images\\app.png",
+  "ExecuteFileName": "main.py"
+}

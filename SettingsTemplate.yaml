@@ -1,0 +1,21 @@
+# Flow 2.1 skips every item without a name, a textBlock included.
+body:
+  - type: textBlock
+    attributes:
+      name: intro
+      description: >-
+        Paste your Asyntai API key below. The API is part of the Starter plan
+        and higher.
+  - type: passwordBox
+    attributes:
+      name: apiKey
+      label: API key
+      description: From your Asyntai dashboard
+      defaultValue: ""
+  - type: hyperlink
+    attributes:
+      name: keyPage
+      label: Where is my key?
+      description: Your Asyntai dashboard, Settings, API
+      urlLabel: Open Settings, API
+      url: https://asyntai.com/settings/api/
